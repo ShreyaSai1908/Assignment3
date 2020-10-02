@@ -12,7 +12,7 @@ namespace Assignment3.Model
     public class Todo
     {
         //required fields
-        private int todoId = 0;
+        private readonly int todoId = 0;
         public int TodoId 
         { 
             get 

@@ -9,7 +9,7 @@ namespace Assignment3.Model
     {
         //field name: personId
         //field modifier : private
-        private int personId = 0;
+        private readonly int personId;
 
         //field property: PersonId
         public int PersonId { get { return personId; } }
