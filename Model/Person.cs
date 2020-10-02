@@ -7,13 +7,6 @@ namespace Assignment3.Model
 {
     public class Person
     {
-        //field name: counter
-        //field modifier : private static
-        private static int counter = 0;
-
-        //field property: Counter
-        public static int Counter { get { return counter; } }
-
         //field name: personId
         //field modifier : private
         private int personId = 0;
@@ -78,7 +71,7 @@ namespace Assignment3.Model
         //constructor
         public Person(string firstName, string lastName)
         {
-            personId = ++counter;
+            personId++;
 
             this.FirstName = firstName;
             this.LastName = lastName;
@@ -87,7 +80,7 @@ namespace Assignment3.Model
         //method to return person information as a String                  
         public string PersonInformation()
         {
-            return $"Person Id:{personId} | Total amount of persons created so far: {counter}\nFirstName: {firstName}\nLastName: {lastName}";
+            return $"Person Id:{personId} \nFirstName: {firstName}\nLastName: {lastName}";
 
         }
 

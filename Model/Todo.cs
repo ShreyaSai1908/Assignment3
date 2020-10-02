@@ -19,10 +19,6 @@ namespace Assignment3.Model
             { 
                 return todoId; 
             }
-            set
-            {
-                this.todoId = value;
-            }
         }
 
         private string description = "";
