@@ -100,6 +100,24 @@ namespace Assignment3.Data
 
         }
 
+        public Todo[] FindByAssignee(Person person)
+        {
+            Todo[] allToDo = FindAll();
+            List<Todo> actualToDoList = new List<Todo>();
+
+            foreach (Todo todo in allToDo)
+            {
+                Person p = todo.Assignee;
+
+                if (p.PersonId == person.PersonId)
+                {
+                    actualToDoList.Add(todo);
+                }
+            }
+            return actualToDoList.ToArray();
+
+        }
+
         public Todo[] FindUnassignedTodoItems()
         {
             Todo[] allToDo = FindAll();

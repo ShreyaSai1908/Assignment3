@@ -71,7 +71,7 @@ namespace Assignment3.Model
         //constructor
         public Person(string firstName, string lastName)
         {
-            personId++;
+            ++personId;
 
             this.FirstName = firstName;
             this.LastName = lastName;
