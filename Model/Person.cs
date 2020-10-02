@@ -77,6 +77,14 @@ namespace Assignment3.Model
             this.LastName = lastName;
         }
 
+        //overloaded constructor
+        public Person(int pid, string firstName, string lastName)
+        {
+            personId=pid;
+            this.FirstName = firstName;
+            this.LastName = lastName;
+        }
+
         //method to return person information as a String                  
         public string PersonInformation()
         {

@@ -6,7 +6,7 @@ using Assignment3.Model;
 
 namespace Assignment3.Data
 {
-    class TodoItems
+    public class TodoItems
     {
 
         //private static Todo array declared here
@@ -49,6 +49,15 @@ namespace Assignment3.Data
         {
             todoList.Add(p);
             todoArray = todoList.ToArray();
+        }
+
+        public Todo addNewTodo(String desc)
+        {
+            int tdid;
+            tdid = TodoSequencer.nextToDoId();
+            Todo td = new Todo(tdid, desc);
+            addToDoToTodoItemsArray(td);
+            return td;
         }
 
         public void Clear()

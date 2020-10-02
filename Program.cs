@@ -7,7 +7,8 @@ namespace Assignment3
     class Program
     {
         static void Main(string[] args)
-        {/*
+        {
+            /*
             People allPersons = new People();
            
             Person p1 = new Person("Person1","Lastname");

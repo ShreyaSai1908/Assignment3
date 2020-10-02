@@ -52,6 +52,15 @@ namespace Assignment3.Data
             personArray = personList.ToArray();
         }
 
+        public Person addNewPerson(String fname, String lname)
+        {
+            int personId;
+            personId= PersonSequencer.nextPersonId();
+            Person p = new Person(personId,fname,lname);
+            addPersonToPeopleArray(p);
+            return p;
+        }
+
         public void Clear()
         {
             personList.Clear();
@@ -72,7 +81,6 @@ namespace Assignment3.Data
             }
 
             personArray = newPersonList.ToArray();
-
         }
 
 

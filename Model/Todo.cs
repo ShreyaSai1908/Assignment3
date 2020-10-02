@@ -60,10 +60,6 @@ namespace Assignment3.Model
             }
         }
 
-
-
-
-
         //constructors
         public Todo(int todoId, string description)
         {
