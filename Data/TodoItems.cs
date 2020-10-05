@@ -11,10 +11,7 @@ namespace Assignment3.Data
 
         //private static Todo array declared here
         private static Todo[] todoArray = new Todo[0];
-
-        //private static Person List is declared to make the size of the personArray dynamic
-        private static List<Todo> todoList = new List<Todo>();
-
+                
         //Add a method public int Size()that return the length of the array
         public int Size()
         {
@@ -47,14 +44,13 @@ namespace Assignment3.Data
 
         public void addToDoToTodoItemsArray(Todo p)
         {
-            todoList.Add(p);
-            todoArray = todoList.ToArray();
+            int toDoArrayNewSize = Size() + 1;
+            Array.Resize<Todo>(ref todoArray, toDoArrayNewSize);
+            todoArray[toDoArrayNewSize - 1] = p;
         }
 
         public Todo addNewTodo(String desc)
         {
-            //int tdid;
-            //tdid = TodoSequencer.nextToDoId();
             Todo td = new Todo(desc);
             addToDoToTodoItemsArray(td);
             return td;
@@ -62,98 +58,110 @@ namespace Assignment3.Data
 
         public void Clear()
         {
-            todoList.Clear();
-            todoArray = todoList.ToArray();
+            int toDoArrayNewSize = 0;
+            Array.Resize<Todo>(ref todoArray, toDoArrayNewSize);
         }
 
         public Todo[] FindByDoneStatus(bool doneStatus)
         {
             Todo[] allToDo = FindAll();
-            List <Todo> actualToDoList = new List<Todo>();
+            Todo[] actualToDo = new Todo[0];
+            int doneTodoCount = 0;
 
-            foreach (Todo todo in allToDo)
+            for (int i = 0; i < allToDo.Length; i++)
             {
-                if (todo.Done == doneStatus)
+                if (allToDo[i].Done == doneStatus)
                 {
-                    actualToDoList.Add(todo);
+                    doneTodoCount++;
+                    Array.Resize<Todo>(ref actualToDo, doneTodoCount);
+                    actualToDo[doneTodoCount-1] = allToDo[i];
                 }
             }
-            return actualToDoList.ToArray();
-
+            return actualToDo;
         }
 
         public Todo[] FindByAssignee(int personId)
         {
             Todo[] allToDo = FindAll();
-            List<Todo> actualToDoList = new List<Todo>();
-
-            foreach (Todo todo in allToDo)
+            Todo[] actualToDo = new Todo[0];
+            int doneTodoCount = 0;
+            
+            for (int i = 0; i < allToDo.Length; i++)
             {
-                Person p = todo.Assignee;
-
+                Person p = allToDo[i].Assignee;
                 if (p.PersonId == personId)
                 {
-                    actualToDoList.Add(todo);
+                    doneTodoCount++;
+                    Array.Resize<Todo>(ref actualToDo, doneTodoCount);
+                    actualToDo[doneTodoCount - 1] = allToDo[i];                    
                 }
             }
-            return actualToDoList.ToArray();
+            return actualToDo;
 
         }
 
         public Todo[] FindByAssignee(Person person)
         {
             Todo[] allToDo = FindAll();
-            List<Todo> actualToDoList = new List<Todo>();
+            Todo[] actualToDo = new Todo[0];
+            int doneTodoCount = 0;
 
-            foreach (Todo todo in allToDo)
+            for (int i = 0; i < allToDo.Length; i++)
             {
-                Person p = todo.Assignee;
-
+                Person p = allToDo[i].Assignee;
                 if (p.PersonId == person.PersonId)
                 {
-                    actualToDoList.Add(todo);
+                    doneTodoCount++;
+                    Array.Resize<Todo>(ref actualToDo, doneTodoCount);
+                    actualToDo[doneTodoCount - 1] = allToDo[i];
                 }
             }
-            return actualToDoList.ToArray();
-
+            return actualToDo;           
         }
 
         public Todo[] FindUnassignedTodoItems()
         {
             Todo[] allToDo = FindAll();
-            List<Todo> actualToDoList = new List<Todo>();
+            Todo[] actualToDo = new Todo[0];
+            int doneTodoCount = 0;
 
-            foreach (Todo todo in allToDo)
+            for (int i = 0; i < allToDo.Length; i++)
             {
-                Person p = todo.Assignee;
-
+                Person p = allToDo[i].Assignee;
                 if (p==null)
                 {
-                    actualToDoList.Add(todo);
+                    doneTodoCount++;
+                    Array.Resize<Todo>(ref actualToDo, doneTodoCount);
+                    actualToDo[doneTodoCount - 1] = allToDo[i];
                 }
             }
-            return actualToDoList.ToArray();
-
+            return actualToDo;
         }
 
         public void removeTodoFromToDoArray(Todo removeTodo)
         {
             Todo[] allToDo = FindAll();
-            List<Todo> newToDoList = new List<Todo>();
+            int todoArraySize = Size();
+            int removeTodoIndex = 0;
 
-            foreach (Todo todo in allToDo)
+            for (int i = 0; i < todoArraySize; i++)
             {
-                if (todo.TodoId != removeTodo.TodoId)
+                if (allToDo[i].TodoId == removeTodo.TodoId)
                 {
-                    newToDoList.Add(todo);
+                    removeTodoIndex = i;
+                    break;
                 }
             }
 
-            todoArray = newToDoList.ToArray();
+            for (int i = removeTodoIndex; i < todoArraySize - 1; i++)
+            {
+                allToDo[i] = allToDo[i + 1];
+            }
 
-         }
+            Array.Resize<Todo>(ref allToDo, todoArraySize - 1);
+            todoArray = allToDo;
 
-
+        }
 
      }
 }

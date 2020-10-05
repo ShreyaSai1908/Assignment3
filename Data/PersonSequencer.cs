@@ -10,9 +10,7 @@ namespace Assignment3.Data
         //field
         private static int personId;
 
-        //auto-properties
-        public static int PersonId { get; set; }
-
+        
         /*
         //field
         private static int personId;
@@ -32,13 +30,13 @@ namespace Assignment3.Data
 
         public static int nextPersonId()
         {
-            PersonId++;
-            return PersonId;
+            personId++;
+            return personId;
         }
 
         public static void reset()
         {
-            PersonId = 0;
+            personId = 0;
         }
 
 

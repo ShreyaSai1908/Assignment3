@@ -13,9 +13,6 @@ namespace Assignment3.Data
         //private static Person array declared here
         private static Person [] personArray= new Person[0];
 
-        //private static Person List is declared to make the size of the personArray dynamic
-        private static List<Person> personList = new List<Person>();
-
         //Add a method public int Size()that return the length of the array
         public int Size()
         {
@@ -48,8 +45,9 @@ namespace Assignment3.Data
 
         public void addPersonToPeopleArray(Person p)
         {
-            personList.Add(p);
-            personArray = personList.ToArray();
+            int personArrayNewSize = Size() + 1;
+            Array.Resize<Person>(ref personArray, personArrayNewSize);
+            personArray[personArrayNewSize-1] = p;
         }
 
         public Person addNewPerson(String fname, String lname)
@@ -63,24 +61,33 @@ namespace Assignment3.Data
 
         public void Clear()
         {
-            personList.Clear();
-            personArray = personList.ToArray();
+            int personArrayNewSize = 0;
+            Array.Resize<Person>(ref personArray, personArrayNewSize);            
         }
 
         public void removePersonFromPersonArray(Person removePerson)
         {
             Person[] allPersons = FindAll();
-            List<Person> newPersonList = new List<Person>();
+            int personArraySize = Size();
+            int removePersonIndex = 0;
 
-            foreach (Person person in allPersons)
+            for (int i = 0; i < personArraySize; i++)
             {
-                if (person.PersonId != removePerson.PersonId)
+                if (allPersons[i].PersonId == removePerson.PersonId)
                 {
-                    newPersonList.Add(person);
+                    removePersonIndex = i;
+                    break;
                 }
             }
 
-            personArray = newPersonList.ToArray();
+            for (int i = removePersonIndex; i < personArraySize-1; i++)
+            {
+                allPersons[i] = allPersons[i + 1];
+            }
+
+            Array.Resize<Person>(ref allPersons, personArraySize-1);
+            personArray = allPersons;
+
         }
 
 

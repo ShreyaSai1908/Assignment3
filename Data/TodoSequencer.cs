@@ -7,18 +7,18 @@ namespace Assignment3.Data
 {
    public class TodoSequencer
     {
-        public static int TodoId { get; set; }
+        public static int todoId;
         
 
         public static int nextToDoId()
         {
-            TodoId++;
-            return TodoId;
+            todoId++;
+            return todoId;
         }
 
         public static void reset()
         {
-            TodoId = 0;
+            todoId = 0;
         }
     }
 }
