@@ -12,6 +12,7 @@ namespace Assignment3.Model
         private readonly int personId;
 
         //field property: PersonId
+        //property modifier: public
         public int PersonId { get { return personId; } }
 
         //field name: firstName
@@ -71,7 +72,7 @@ namespace Assignment3.Model
         //constructor
         public Person(string firstName, string lastName)
         {
-            ++personId;
+            //++personId;
 
             this.FirstName = firstName;
             this.LastName = lastName;
@@ -86,11 +87,11 @@ namespace Assignment3.Model
         }
 
         //method to return person information as a String                  
-        public string PersonInformation()
+        /*public string PersonInformation()
         {
             return $"Person Id:{personId} \nFirstName: {firstName}\nLastName: {lastName}";
 
-        }
+        }*/
 
     }
 }

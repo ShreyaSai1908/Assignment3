@@ -7,6 +7,9 @@ namespace Assignment3.Data
 {
     public class PersonSequencer
     {
+        //field
+        private static int personId;
+
         //auto-properties
         public static int PersonId { get; set; }
 

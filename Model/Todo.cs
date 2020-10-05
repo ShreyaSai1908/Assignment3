@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assignment3.Data;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -30,7 +31,16 @@ namespace Assignment3.Model
             } 
             set 
             {
-                this.description = value;
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentException("Description is null, empty, or consists only of white-space");
+                }
+
+                else
+                {
+                    description = value;
+                }
+
             } 
         }
 
@@ -61,10 +71,10 @@ namespace Assignment3.Model
         }
 
         //constructors
-        public Todo(int todoId, string description)
+        public Todo(string description)
         {
-            this.todoId = todoId;
-            this.description = description;
+            todoId = TodoSequencer.nextToDoId();
+            this.Description = description;
 
         }
 

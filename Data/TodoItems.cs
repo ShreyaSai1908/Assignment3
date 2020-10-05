@@ -53,9 +53,9 @@ namespace Assignment3.Data
 
         public Todo addNewTodo(String desc)
         {
-            int tdid;
-            tdid = TodoSequencer.nextToDoId();
-            Todo td = new Todo(tdid, desc);
+            //int tdid;
+            //tdid = TodoSequencer.nextToDoId();
+            Todo td = new Todo(desc);
             addToDoToTodoItemsArray(td);
             return td;
         }
